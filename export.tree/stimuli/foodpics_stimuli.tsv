@@ -1,0 +1,38 @@
+foodpics_image_no	foodpics_description	category_in_task	familiarity_omnivore_raters_pct
+0012	ham sandwich	meat	97.9
+0037	pasta meal	meat	96.3
+0047	french fries and chicken drumsticks	meat	98.6
+0061	pizza (salami)	meat	100.0
+0065	cheese burger	meat	100.0
+0077	ham sandwich with chips	meat	98.2
+0085	Pizza (with salami)	meat	100.0
+0108	pizza (ham and mushrooms)	meat	99.9
+0143	pasta bake	meat	98.6
+0144	pasta bake	meat	91.1
+0311	Roast Beef	meat	100.0
+0314	shashlik with baked potato	meat	93.9
+0337	meat fillets and vegetables, grilled	meat	97.2
+0371	sushi with salmon	meat	92.4
+0406	salmon with vegetables, grilled	meat	92.1
+0484	steak with backed potato and vegetables	meat	99.8
+0485	burger patty with french fries and salad	meat	99.1
+0493	spare ribs with french fries and salad	meat	99.4
+0556	Viennese Schnitzel with potatoes	meat	92.7
+0076	spaghetti with tomato sauce	vegetarian	100.0
+0131	pizza (veggie/cheese)	vegetarian	96.3
+0142	pasta bake	vegetarian	88.9
+0213	crisp bread with cottage cheese	vegetarian	86.8
+0225	crisp read with cottage cheese	vegetarian	87.8
+0229	salad plate	vegetarian	100.0
+0304	potato gratin	vegetarian	88.3
+0316	spinach-potatoe casserole	vegetarian	87.1
+0350	quiche	vegetarian	84.9
+0369	sushi roll with cucumber	vegetarian	90.8
+0481	flat cake with salad	vegetarian	88.4
+0483	pancake with fruits	vegetarian	97.5
+0487	bagel with cream cheese and vegetables	vegetarian	96.9
+0521	rigatoni with vegetable	vegetarian	95.3
+0526	plate of salad	vegetarian	99.7
+0551	spaghetti with pesto	vegetarian	96.1
+0558	asparagus with bechamel sauce	vegetarian	95.9
+0567	tomato and mozzarella	vegetarian	86.8

@@ -1,0 +1,114 @@
+# Dietary identity and the neural categorization of food images: an open EEG dataset with Food-pics stimuli
+
+## Overview
+14-channel EEG (EMOTIV EPOC X; four recordings, sub-01, sub-02, sub-03 and sub-09,
+on the earlier EPOC+ model; scalp positions AF3 F7 F3 FC5 T7 P7 O1 O2 P8 T8 FC6
+F4 F8 AF4) recorded from 77 adults while they categorized prepared-food images
+as meat or vegetarian. Each recording also includes a short eyes-open /
+eyes-closed resting baseline that precedes the task. Stimuli were presented and
+event markers logged by the EmotivLABS web-based experiment platform (EMOTIV
+Builder). Images are from the Food-pics database (Blechert et al., 2014, 2019).
+
+These data were collected within longer sessions that also recorded other
+measures (reported elsewhere). Only the categorization paradigm and its resting
+baseline are released here.
+
+## Task
+The same set of 37 prepared-food images was presented twice (up to ~74 trials).
+On each trial a participant pressed M (meat) or X (vegetarian). Participants
+were instructed that accuracy mattered more than speed. Response times were
+recorded.
+
+In the events files:
+- `stim_category` is the displayed image's true category: m (meat) or v (vegetarian).
+- `response_key` is the physical key pressed: M or X.
+- `response` is that key mapped back to category (m/v) so it lines up with `stim_category`.
+- `accuracy` is 1 when `response` matches `stim_category`.
+- `boundary` rows mark the two segment joins (see "Recording structure").
+
+## Files
+- `participants.tsv` / `participants.json`: one row per participant, with
+  demographics, baseline questionnaire (verbatim answers; the JSON gives the
+  question wording and response options), dietary-preference profile (verbatim
+  answer, binary exclusion indicators, derived category), and per-subject task
+  summaries. `.tsv` is tab-separated and opens like a CSV.
+- `sub-NN/eeg/`: the recording (`_eeg.edf`), `_events.tsv`, `_channels.tsv`,
+  `_eeg.json` sidecar, and standard 10-20 electrode positions
+  (`_electrodes.tsv`, `_coordsystem.json`).
+- `derivatives/eeglab/`: the same data as EEGLAB `.set` files with labelled
+  events (see the README there). `code/`: the script that generates them.
+- `stimuli/foodpics_stimuli.tsv` / `.json`: the 37 Food-pics images used in the
+  task (19 meat, 18 vegetarian), with their Food-pics image number and
+  description, their category in the task, and their Food-pics normative
+  familiarity (percentage of omnivore raters familiar with the food). The image
+  files themselves are available from the Food-pics database, not from here.
+
+## Recording structure
+Each EDF joins three segments of the source recording: a 30-s eyes-open window
+(0-30 s), a 30-s eyes-closed window (30-60 s) and the categorization task (60 s
+to the end). The resting segments advanced on the participant's button press, so
+a fixed 30-s window inside each instructed segment is released. Each join is a
+discontinuity and is marked by a `boundary` event (in `events.tsv` and as an EDF+
+annotation); filter each segment separately, or use software that respects
+boundary events (EEGLAB does so natively).
+
+## Channels and data quality
+Each EDF holds 46 channels:
+- 14 EEG channels (µV).
+- `CQ_<sensor>` (14): EMOTIV contact quality, impedance-based, coded 0 (very
+  bad), 1 (bad), 2 (ok) and 4 (good); the device does not use the value 3.
+- `EQ_<sensor>` (14): EMOTIV EEG quality, 0-4, the minimum of contact quality,
+  a signal-quality score and a signal-magnitude score, each over 2-s windows.
+  Low impedance alone does not guarantee a usable signal, so EQ is the more
+  informative index for screening.
+- `CQ_CMS`, `CQ_DRL`: contact quality of the two reference sensors.
+- `CQ_OVERALL`, `EQ_OVERALL`: overall indices in percent.
+All quality channels are typed MISC in `channels.tsv`, which also gives each EEG
+sensor's mean CQ and EQ over the recording. Contact quality was uniformly high
+across the released recordings; EEG quality varied more between and within
+sessions, so re-users can set their own thresholds per channel, per time window
+or per participant.
+
+The resting baseline supports a per-participant eyes-closed alpha-reactivity
+check (`berger_alpha_ratio`, `berger_pass` in `participants.tsv`); 12 of 77
+recordings do not show the expected increase and are retained.
+
+## Processing
+Data are released minimally processed: no re-referencing, artifact rejection,
+ICA or filtering beyond the anti-aliasing step described below. The device applies its built-in filtering (0.16-43 Hz
+bandwidth, 5th-order sinc filter, 50/60 Hz notch). All recordings are provided
+at 128 Hz; where the headset recorded at 256 Hz, the signal was downsampled with
+a zero-phase anti-aliasing low-pass filter (cutoff 51.2 Hz, above the headset's
+43 Hz bandwidth), so all recordings are comparable within that bandwidth.
+
+## Event timing
+Event markers were generated in software by the web-based platform; their
+latency and jitter relative to the on-screen stimulus were not measured
+independently (no photodiode). Analyses of spectral power, resting-state
+activity, behaviour and slow or late components are little affected. Analyses
+of early, short-latency event-related potentials are the most sensitive to
+marker jitter and should take it into account (see Williams et al., 2021,
+https://doi.org/10.7717/peerj.10700).
+
+## Notes for re-use
+- Read the EDFs with a reader that parses the EMOTIV header correctly, for
+  example pyedflib, EEGLAB (BIOSIG) or the provided EEGLAB `.set` files; some
+  general-purpose readers return flat signals for these files.
+- Recording dates have been removed; files carry a neutral fixed date. No names
+  or device identifiers are included.
+- Keypresses other than M or X are coded `response_key` = other and scored
+  `accuracy` = n/a (43 trials in total). Forty-one of them come from one
+  participant, sub-52, whose keypresses were registered by the platform with a
+  non-standard key code on 41 of 68 trials: on 31 of 33 vegetarian images and
+  on 10 of 35 meat images. This code probably stood in for the X key in most,
+  but not all, cases. The `mean_accuracy` for sub-52 in `participants.tsv` is
+  therefore based on only 27 trials; re-users may wish to exclude sub-52 from
+  analyses of accuracy or response time.
+
+## References
+- Blechert, J., Meule, A., Busch, N. A., & Ohla, K. (2014). Food-pics: an image
+  database for experimental research on eating and appetite. Frontiers in
+  Psychology, 5, 617. https://doi.org/10.3389/fpsyg.2014.00617
+- Blechert, J., Lender, A., Polk, S., Busch, N. A., & Ohla, K. (2019).
+  Food-Pics_Extended. Frontiers in Psychology, 10, 307.
+  https://doi.org/10.3389/fpsyg.2019.00307

@@ -1,0 +1,34 @@
+# EEGLAB derivative — labelled .set files
+
+One EEGLAB `.set` file per participant, containing the same minimally-processed
+EEG as the released EDF (resting baseline + food categorization), with events
+stored as EEGLAB-native string labels so they display correctly in EEGLAB.
+
+## Why this layer exists
+EEGLAB's native EDF import does not reliably parse event labels from EDF+
+annotations or from events.tsv — it can render them as numeric codes (e.g. 0/1)
+or NaN. These `.set` files store the event types directly as strings, so EEGLAB
+shows meaningful labels with no extra steps. The repository-root EDFs remain the
+canonical data; these files add no new information and are regenerable from them
+(see ../../code/). Users of MNE-Python or FieldTrip can work directly from the
+EDF + events.tsv and do not need this layer.
+
+## Event labels in EEG.event.type
+- `rest_eyesopen`, `rest_eyesclosed` — the two resting-baseline segments.
+- `categorize/meat`, `categorize/veg` — categorization trials, by stimulus category
+  (`categorize/unknown` for the two trials whose stimulus category was not logged).
+- `boundary` — the two joins between released segments (30 s, 60 s); EEGLAB
+  treats these as discontinuities when filtering and epoching.
+The full trial-level record (response, response time, accuracy) is in the
+corresponding events.tsv at the repository root.
+
+## Contents
+- 14 EEG channels at 128 Hz; no filtering, re-referencing or artifact correction.
+- The EMOTIV contact- and EEG-quality channels in `EEG.etc.quality`
+  (`labels`, `data`; same samples as EEG.data).
+- Idealized 10-20 channel positions (same as electrodes.tsv) embedded in EEG.chanlocs,
+  with Cartesian, spherical and topographic fields filled, so scalp maps work directly.
+- EEG.subject set.
+
+The MATLAB-based EEGLAB is required to run the conversion script; the
+standalone/compiled EEGLAB can open these files directly.

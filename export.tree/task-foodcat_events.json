@@ -1,0 +1,53 @@
+{
+  "onset": {
+    "Description": "Event onset relative to the start of the recording.",
+    "Units": "s"
+  },
+  "duration": {
+    "Description": "Event duration in seconds; 0 for boundary markers; n/a for instantaneous categorization trials.",
+    "Units": "s"
+  },
+  "trial_type": {
+    "Description": "Type of event.",
+    "Levels": {
+      "rest_eyesopen": "Eyes-open resting baseline segment.",
+      "rest_eyesclosed": "Eyes-closed resting baseline segment.",
+      "categorize_trial": "A food-image categorization trial.",
+      "boundary": "Discontinuity: the released file joins three segments of the source recording (eyes-open window, eyes-closed window, task); a boundary marks each join, at 30 s and 60 s."
+    }
+  },
+  "stim_category": {
+    "Description": "True category of the displayed food image; n/a where the stimulus category was not logged.",
+    "Levels": {
+      "m": "Meat",
+      "v": "Vegetarian"
+    }
+  },
+  "response": {
+    "Description": "Participant response mapped to category from the pressed key; ? where a non-response key was pressed; n/a for non-trial rows.",
+    "Levels": {
+      "m": "Meat response",
+      "v": "Vegetarian response",
+      "?": "Key pressed was not a valid response key"
+    }
+  },
+  "response_key": {
+    "Description": "Physical key pressed by the participant; other for any key that was not M or X; n/a for non-trial rows.",
+    "Levels": {
+      "M": "M key (meat response)",
+      "X": "X key (vegetarian response)",
+      "other": "A key other than M or X"
+    }
+  },
+  "response_time": {
+    "Description": "Time from image onset to keypress in seconds.",
+    "Units": "s"
+  },
+  "accuracy": {
+    "Description": "Whether the response matched the stimulus category; n/a where the stimulus category was not logged, where a key other than M or X was pressed, or for non-trial rows.",
+    "Levels": {
+      "1": "Correct",
+      "0": "Incorrect"
+    }
+  }
+}

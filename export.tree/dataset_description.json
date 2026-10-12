@@ -1,0 +1,24 @@
+{
+    "Name": "Dietary identity and the neural categorization of food images: an open EEG dataset with Food-pics stimuli",
+    "BIDSVersion": "1.9.0",
+    "DatasetType": "raw",
+    "License": "CC0",
+    "Authors": [
+        "Attila Pohlmann",
+        "Silvia Noroña",
+        "Marithza Vélez"
+    ],
+    "Acknowledgements": "Stimuli are images from the Food-pics database (Blechert et al., 2014, 2019).",
+    "HowToAcknowledge": "Please cite the associated Data in Brief article and this dataset: A. Pohlmann, S. Noroña, M. Vélez, Dietary identity and the neural categorization of food images: an open EEG dataset with Food-pics stimuli [dataset], OpenNeuro. https://doi.org/10.18112/openneuro.ds008940",
+    "Funding": [
+        "This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors."
+    ],
+    "EthicsApprovals": [
+        "Comité de Ética de Investigación en Seres Humanos, Universidad San Francisco de Quito (CEISH-USFQ), Oficio N° 078-2022-CA-P22-053M-CEISH-USFQ"
+    ],
+    "ReferencesAndLinks": [
+        "https://doi.org/10.3389/fpsyg.2014.00617",
+        "https://doi.org/10.3389/fpsyg.2019.00307"
+    ],
+    "DatasetDOI": "doi:10.18112/openneuro.ds008940.v1.0.0"
+}

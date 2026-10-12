@@ -1,0 +1,5 @@
+{
+  "EEGCoordinateSystem": "CapTrak",
+  "EEGCoordinateUnits": "m",
+  "EEGCoordinateSystemDescription": "Idealized 10-20 positions for the 14 EMOTIV scalp electrodes on a sphere of radius 85.8 mm (standard spherical 10-20 angles; not individually digitized). x towards the right ear, y towards the nasion, z up."
+}

@@ -1,0 +1,19 @@
+{
+  "foodpics_image_no": {
+    "Description": "Image number in the Food-pics database (Blechert et al., 2014, https://doi.org/10.3389/fpsyg.2014.00617; numbering as in Food-pics_Extended, Blechert et al., 2019, https://doi.org/10.3389/fpsyg.2019.00307). The image files are not redistributed here; they are available from the Food-pics database."
+  },
+  "foodpics_description": {
+    "Description": "Item description (English) as given in the Food-pics database."
+  },
+  "category_in_task": {
+    "Description": "Category of the image in the categorization task (the true category used to score accuracy).",
+    "Levels": {
+      "meat": "Meat dish (stim_category m in events.tsv)",
+      "vegetarian": "Vegetarian dish (stim_category v in events.tsv)"
+    }
+  },
+  "familiarity_omnivore_raters_pct": {
+    "Description": "Food-pics normative familiarity: percentage of omnivore raters who reported being familiar with the depicted food (dichotomous yes/no item), averaged over the male and female omnivore rater groups as given in the Food-pics_Extended database. Norms were collected outside Latin America and were not rated by the participants of this dataset.",
+    "Units": "%"
+  }
+}
